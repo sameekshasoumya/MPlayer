@@ -1,105 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MPlayer</title>
-    <link rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
-    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" 
-    crossorigin="anonymous" 
-    referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style_main.css">
 </head>
+
 <body>
     <div class="main">
-        <h1>Music Player</h1>
-        <div class="music-container">
-            <h2 id="title">Memories</h2>
-            <h3 id="artist">Maroon 5</h3>
-            <div class="img-container">
-                <img src="images/song-1.jpg" alt="Memories_Icon">
-            </div>
-            <audio src="mfolder/song-1.mpeg"></audio>
-            <div class="control">
-                <i class="fas fa-backward" id="prev" title="Previous"></i>
-                <i class="fas fa-play main-btn" id="play" title="Play"></i>
-                <i class="fas fa-forward" id="next" title="Next"></i>
-            </div>
+        <h1>My Song Player</h1>
+        <div class="category">
+            <h2>Select a language</h2>
+                <a href="music_english.html">English</a>
+                <a href="music_hindi.html">Hindi</a>
         </div>
     </div>
-    <script>
-        const music = document.querySelector("audio");
-        const img = document.querySelector("img");
-        const play = document.getElementById("play");
-        const artist = document.getElementById("artist");
-        const title = document.getElementById("title");
-        const next = document.getElementById("next");
-        const prev = document.getElementById("prev");
-
-        const songs = [
-            {
-            name: "song-1",
-            title: "Memories",
-            artist: "Maroon 5",
-            },
-            {
-            name: "song-2",
-            title: "Shape Of You",
-            artist: "Ed Sheeran",
-            },
-            {
-            name: "song-3",
-            title: "It Ain't Me",
-            artist: "DJ Kygo & Selena Gomez",
-            },
-        ]
-
-        let isPlaying = false;
-        const playMusic = ()=>{
-            isPlaying = true;
-             music.play();
-             play.classList.replace('fa-play','fa-pause');
-             img.classList.add("anim");
-        };
-
-        const pauseMusic = ()=>{
-             isPlaying = false;
-             music.pause();
-             play.classList.replace('fa-pause','fa-play');
-             img.classList.remove("anim");
-        };
-
-        play.addEventListener("click",()=>{
-        isPlaying ? pauseMusic() : playMusic();
-        });
-
-        const loadSong = (songs) => {
-            title.textContent = songs.title;
-            artist.textContent = songs.artist;
-            music.src = "mfolder/" + songs.name + ".mpeg";
-            //music.src = `music${songs.name}.mp3`;
-            img.src = "images/" + songs.name + ".jpg";
-        };
-
-        songIndex = 0;
-
-        const nextSong = () => {
-            songIndex = (songIndex + 1) % (songs.length);
-            loadSong(songs[songIndex]);
-            playMusic();
-        };
-
-
-        const prevSong = () => {
-            songIndex = (songIndex + songIndex - 1) % (songs.length);
-            loadSong(songs[songIndex]);
-            playMusic();
-        };
-
-        next.addEventListener('click',nextSong);
-        prev.addEventListener('click',prevSong);
-
-    </script>
 </body>
+
 </html>

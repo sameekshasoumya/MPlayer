@@ -37,7 +37,7 @@ h1{
     background-color: rgb(250, 246, 246);
     border-radius: 2rem;
     box-shadow: 0 1.2rem 3rem 0.5rem rgb(174 255 0 / 20%);
-    padding: 1rem;
+    padding: 0.6rem;
     justify-content: center;
     text-align: center;
     display: flex;
