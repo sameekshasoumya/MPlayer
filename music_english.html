@@ -77,9 +77,9 @@
         const loadSong = (songs) => {
             title.textContent = songs.title;
             artist.textContent = songs.artist;
-            music.src = "mfolder/english" + songs.name + ".mpeg";
+            music.src = "mfolder/english/" + songs.name + ".mpeg";
             //music.src = `music${songs.name}.mp3`;
-            img.src = "images/english" + songs.name + ".jpg";
+            img.src = "images/english/" + songs.name + ".jpg";
         };
 
         songIndex = 0;
