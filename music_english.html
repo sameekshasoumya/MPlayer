@@ -21,6 +21,15 @@
                 <img src="images/english/song-1.jpg" alt="Memories_Icon">
             </div>
             <audio src="mfolder/english/song-1.mpeg"></audio>
+            <div class="progress-bar" id="progress-cont">
+                <div class="tot-duration">
+                    <div id="curr-time">0:00</div>
+                    <div id="duration">3:15</div>
+                </div>
+                <div class="progress_div" id="progress_div">
+                    <div class="progress" id="progress"></div>
+                </div>
+            </div>
             <div class="control">
                 <i class="fas fa-backward" id="prev" title="Previous"></i>
                 <i class="fas fa-play main-btn" id="play" title="Play"></i>
@@ -36,6 +45,10 @@
         const title = document.getElementById("title");
         const next = document.getElementById("next");
         const prev = document.getElementById("prev");
+        let progress = document.getElementById("progress");
+        let total_duration = document.getElementById("duration");
+        let current_duration = document.getElementById("curr-time");
+        const progress_div = document.getElementById("progress_div");
 
         const songs = [
             {
@@ -97,6 +110,33 @@
             playMusic();
         };
 
+        music.addEventListener('timeupdate', (event) => {
+            const { currentTime, duration } = event.srcElement;
+            let prog_time = (currentTime / duration) * 100;
+            progress.style.width = `${prog_time}%`;
+            let mins = Math.floor(duration / 60);
+            let secs = Math.floor(duration % 60);
+            let tot_duration = `${mins}:${secs}`;
+            if (duration) {
+                total_duration.textContent = `${tot_duration}`;
+            }
+
+            let mins_curr = Math.floor(currentTime / 60);
+            let secs_curr = Math.floor(currentTime % 60);
+            if (secs_curr < 10) {
+                secs_curr = `0${secs_curr}`;
+            }
+            let tot_curr_duration = `${mins_curr}:${secs_curr}`;
+            current_duration.textContent = `${tot_curr_duration}`;
+        });
+
+        progress_div.addEventListener('click', (event) => {
+            const { duration } = music;
+            let prog_move = (event.offsetX / event.srcElement.clientWidth) * duration;
+            music.currentTime = prog_move;
+        });
+
+        music.addEventListener('ended', nextSong);
         next.addEventListener('click', nextSong);
         prev.addEventListener('click', prevSong);
 
